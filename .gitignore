@@ -1,0 +1,5 @@
+
+.vscode/settings.json
+/repuestosmarcos/settings.py
+db.sqlite3
+*.pyc 
