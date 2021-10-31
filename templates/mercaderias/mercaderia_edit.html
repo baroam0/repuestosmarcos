@@ -23,31 +23,28 @@
 
 
             <form class="pure-form" method="POST">{% csrf_token %}
+
                 <fieldset class="pure-group">
-                    
-                    <!--label for="aligned-name">Descripcion</label>
-                    
-                    <span class="pure-form-message-inline">Este dato es requerido.</span-->
-
-
-                    <form class="pure-form">
-                        <fieldset class="pure-group">
-                            {{form.descripcion}}
-                            <input type="text" class="pure-input-1" placeholder="Password" />
-                            <input type="email" class="pure-input-1" placeholder="Email" />
-                        </fieldset>
-                        
-                    </form>
-
-                    
-                    
-                    <br>
+                    {{form.descripcion}}
+                    {{form.unidad}}
+                    {{form.cantidad}}
+                </fieldset>
+                                
+                <fieldset class="pure-group">
                     <br>
 
                     <div class="pure-controls">
-                        <button type="submit" class="pure-button pure-button-primary">Aceptar</button>
-                        &nbsp; &nbsp; &nbsp;
-                        <button type="button" class="pure-button" onclick="IrListadoMaterial()">Cancelar</button>
+
+                        <div class="pure-g">
+
+                            <div class="pure-u-1-5">
+                                <button type="submit" class="pure-button pure-button-primary">Aceptar</button>
+                            </div>
+                            <div class="pure-u-3-5"></div>
+                            <div class="pure-u-1-5">
+                                <button type="button" class="pure-button" onclick="IrListadoMercaderia()">Cancelar</button>
+                            </div>
+                        </div>
                     </div>
                 </fieldset>                
             </form>
@@ -58,8 +55,8 @@
     {% block customjs %}
 
         <script>
-            function IrListadoMaterial() {
-                window.location.replace("/listadomaterial");
+            function IrListadoMercaderia() {
+                window.location.replace("/listadomercaderias");
             }
         </script>
 

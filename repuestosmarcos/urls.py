@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import home
-from mercaderias.views import listadomercaderia, nuevamercaderia
+from mercaderias.views import listadomercaderias, nuevamercaderia, editarmercaderia
 
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
-    path('listadomercaderia/', listadomercaderia),
+    path('listadomercaderias/', listadomercaderias),
     path('nuevamercaderia/', nuevamercaderia),
+    path('editarmercaderia/<int:pk>', editarmercaderia),
 ]

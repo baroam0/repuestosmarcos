@@ -1,25 +1,28 @@
 
 from django import forms
-from django.db.models import fields
+from django.forms import fields
 
-from .models import Mercaderia, Unidad
+from mercaderias.models import Mercaderia, Unidad
 
 
 class MercaderiaForm(forms.ModelForm):
-
     descripcion = forms.CharField(
-        required=True,
-        widget=forms.TextInput(
-            attrs={'class': "pure-input-1", 'placeholder':'Descripcion'})
-        )
-
+        required=True, widget=forms.TextInput({'class':'pure-input-1', 'placeholder':'Descripcion'}))
     unidad = forms.ModelChoiceField(
         required=True,
         queryset=Unidad.objects.all(),
-        widget=forms.ModelChoiceField(attrs={'class':'pure-input-1'}))
-
-    cantidad = forms.IntegerField(required=True)
+        widget=forms.Select({'class':'pure-input-1'})
+        )
+    cantidad = forms.DecimalField(
+        required=True,
+        widget=forms.NumberInput(
+            {
+                'class':'pure-input-1',
+                'placeholder':'Cantidad'
+            }
+        )
+    )
 
     class Meta:
         model = Mercaderia
-        fields = ["descripcion", "unidad", "cantidad"]
+        fields = ['descripcion', 'unidad', 'cantidad'] 

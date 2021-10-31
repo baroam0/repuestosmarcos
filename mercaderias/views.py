@@ -5,11 +5,11 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Mercaderia
+from .models import Mercaderia, Unidad
 from .forms import MercaderiaForm
 
 
-def listadomercaderia(request):
+def listadomercaderias(request):
     resultados = None
     if "txtBuscar" in request.GET:
         parametro = request.GET.get("txtBuscar")
@@ -17,7 +17,7 @@ def listadomercaderia(request):
 
     return render(
         request,
-        "mercaderias/listadomercaderia.html",
+        "mercaderias/listadomercaderias.html",
         {
             "resultados": resultados
         }
@@ -29,33 +29,33 @@ def nuevamercaderia(request):
         form = MercaderiaForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "SE HA GRABADO LA MERCADERIA")
-            return redirect('/listadomercaderia')
+            messages.success(request, "SE HA GRABADO EL MATERIAL")
+            return redirect('/listadomercaderias')
         else:
             return render(request, 'mercaderias/mercaderia_edit.html', {"form": form})
     else:
         form = MercaderiaForm()
         return render(request, 'mercaderias/mercaderia_edit.html', {"form": form})
 
-"""
-def editarmaterial(request, pk):
-    consulta = Material.objects.get(pk=pk)
+
+def editarmercaderia(request, pk):
+    consulta = Mercaderia.objects.get(pk=pk)
     if request.POST:
-        form = MaterialForm(request.POST, instance=consulta)
+        form = MercaderiaForm(request.POST, instance=consulta)
         if form.is_valid():
             form.save()
-            messages.success(request, "SE HA ACTUALIZADO EL MATERIAL")
-            return redirect('/listadomaterial')
+            messages.success(request, "SE HA ACTUALIZADO LOS DATOS DE LA MERCADERIA")
+            return redirect('/listadomercaderias')
         else:
-            return render(request, 'materiales/material_edit.html', {"form": form})
+            return render(request, 'mercaderias/mercaderia_edit.html', {"form": form})
     else:
-        form = MaterialForm(instance=consulta)
+        form = MercaderiaForm(instance=consulta)
         return render(request,
-            'materiales/material_edit.html',
+            'mercaderias/mercaderia_edit.html',
             {"form": form}
         )
 
-
+"""
 def ajaxmaterial(request):
     parametro = request.GET.get('term')
     material = Material.objects.filter(descripcion__icontains=parametro)
