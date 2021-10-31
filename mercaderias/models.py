@@ -32,5 +32,4 @@ class Mercaderia(models.Model):
         verbose_name_plural = "Mercaderias"
 
 
-
 # Create your models here.
