@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from .views import home
+from mercaderias.views import listadomercaderia, nuevamercaderia
+
 urlpatterns = [
+    path('', home),
     path('admin/', admin.site.urls),
+    path('listadomercaderia/', listadomercaderia),
+    path('nuevamercaderia/', nuevamercaderia),
 ]
