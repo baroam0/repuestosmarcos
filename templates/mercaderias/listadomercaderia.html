@@ -7,7 +7,7 @@
         <div class="pure-u-1-5"></div>
         <div class="pure-u-3-5">
             <h3>
-                Busqueda de Mercaderias
+                Busqueda de Materiales
             </h3>
 
 
@@ -29,7 +29,7 @@
 
                     &nbsp;&nbsp;&nbsp;
 
-                    <button type="button" class="pure-button pure-button" onclick="IrNuevoMaterial()">Nuevo Material</button>
+                    <button type="button" class="pure-button pure-button" onclick="IrNuevaMercaderia()">Nuevo Material</button>
 
                     &nbsp;&nbsp;&nbsp;
 
@@ -51,8 +51,6 @@
                 <thead>
                     <tr>
                         <th>Descripcion</th>
-                        <th>Unidad</th>
-                        <th>Cantidad</th>
                         <th>Editar</th>
                     </tr>
                 </thead>
@@ -60,8 +58,6 @@
                     {% for resultado in resultados %}
                         <tr>
                             <td>{{resultado.descripcion.upper }}</td>
-                            <td>{{resultado.unidad }}</td>
-                            <td>{{resultado.cantidad }}</td>
                             <td>
                                 <a href="/editarmercaderia/{{resultado.pk}} ">Editar</a></p>
                             </td>
@@ -82,7 +78,7 @@
             $("#txtBuscar").focus();
         });
 
-        function IrNuevoMaterial() {
+        function IrNuevaMercaderia() {
             window.location.replace("/nuevamercaderia");
         }
 
