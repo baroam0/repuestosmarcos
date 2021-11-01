@@ -56,43 +56,15 @@
             <form class="pure-form">
                 <fieldset class="pure-group">
                     <input type="text" id="txtFecha" class="pure-input-1" placeholder="Fecha" />
-
-                    <select id="selectContratista">
-                        {% for contratista in contratistas %}
-                            <option value={{contratista.pk}}>
-                                {{contratista.descripcion.upper}}
-                            </option>
-                        {% endfor%}
-                    </select>
-
-                    <select id="selectObras">
-                        {% for obra in obras %}
-                            <option value={{obra.pk}}>
-                                {{obra.descripcion.upper}}
-                            </option>
-                        {% endfor%}
-                    </select>
-                    
-                    <input type="text" id="txtEncargado" class="pure-input-1" placeholder="Encargado" />
                     
                 </fieldset>
 
 
                 <fieldset class="pure-group">
-                    <select id="selectMaterial">
-                    </select>
 
-                    <button type="button" id="btnnuevomaterial" class="pure-button">Nuevo material </button>
-
-                    <input type="text" id="txtCantidad" class="pure-input-1-2" placeholder="Cantidad" />
-
-                    <select id="selectUnidad">
-                        {% for unidad in unidades %}
-                            <option value={{unidad.pk}}>
-                                {{unidad.descripcion}}
-                            </option>
-                        {% endfor%}
-                    </select>
+                    {{form.mercaderia}}
+                    {{form.unidad}}
+                    {{form.cantidad}}
 
                     <button type="button" class="pure-button" onclick="AgregarFilaTabla()" >Agregar</button>                    
 
@@ -179,6 +151,8 @@
 
             });
 
+            /*
+
 
             $('#selectMaterial').select2({
                 width: "50%",
@@ -205,6 +179,7 @@
                     }
                 }
             });
+            */
 
 
             function getSelectedText(elementId) {
@@ -219,16 +194,18 @@
             }
 
             function AgregarFilaTabla(){
-                var material = getSelectedText("selectMaterial");
-                var material_id = $("#selectMaterial").val();
-                var cantidad = $("#txtCantidad").val();
+                //var material = getSelectedText("id_mercaderia");
+                
+                var material = $("#id_mercaderia").val(); 
+                var material_id = $("#id_unidad").val();
+                var cantidad = $("#id_cantidad").val();
 
                 if(cantidad==""){
                     cantidad = 1
                 }
 
-                var unidad = getSelectedText("selectUnidad")
-                var id_unidad = $("#selectUnidad").val();
+                //var unidad = getSelectedText("selectUnidad")
+                //var id_unidad = $("#selectUnidad").val();
 
                 contenido = "<tr id='" + material_id +  "'>";
                 contenido = contenido + "<td>"+ material +"</td>";

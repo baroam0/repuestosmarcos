@@ -21,7 +21,7 @@ class Mercaderia(models.Model):
     descripcion = models.CharField(
         max_length=255,blank=False, null=False, unique=True)
     unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
-    cantidad = models.IntegerField()
+    cantidad = models.DecimalField(max_digits=10, decimal_places=2,null=False, blank=False)
 
     def __str__(self):
         """Retorno del nombre de la Mercaderia"""

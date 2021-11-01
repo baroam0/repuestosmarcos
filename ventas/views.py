@@ -1,7 +1,9 @@
 
-from django.shortcuts import render
-from .models import Venta
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
+from .models import Venta
+from .forms import DetalleVentaForm
 
 def listadoventas(request):
     resultados = None
@@ -11,7 +13,7 @@ def listadoventas(request):
 
     return render(
         request,
-        "mercaderias/listadomercaderias.html",
+        "ventas/listadoventa.html",
         {
             "resultados": resultados
         }
@@ -20,16 +22,16 @@ def listadoventas(request):
 
 def nuevaventa(request):
     if request.POST:
-        form = MercaderiaForm(request.POST)
+        form = DetalleVentaForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "SE HA GRABADO EL MATERIAL")
-            return redirect('/listadomercaderias')
+            messages.success(request, "SE HA GRABADO LA VENTA")
+            return redirect('/listadoventas')
         else:
-            return render(request, 'mercaderias/mercaderia_edit.html', {"form": form})
+            return render(request, 'ventas/venta_edit.html', {"form": form})
     else:
-        form = MercaderiaForm()
-        return render(request, 'mercaderias/mercaderia_edit.html', {"form": form})
+        form = DetalleVentaForm()
+        return render(request, 'ventas/venta_edit.html', {"form": form})
 
 
 def editarmercaderia(request, pk):
