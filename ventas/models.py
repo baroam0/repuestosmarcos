@@ -6,7 +6,7 @@ class Venta(models.Model):
     fecha = models.DateField(null=False, blank=False)
     
     def __str__(self):
-        return self.fecha
+        return str(self.fecha)
     
     class Meta:
         verbose_name_plural = "Ventas"
@@ -19,7 +19,7 @@ class DetalleVenta(models.Model):
     cantidad = models.DecimalField(decimal_places=2, max_digits=10, blank=False, null=False)
 
     def __str__(self):
-        return self.venta
+        return str(self.venta)
 
     class Meta:
         verbose_name_plural = "Detalles de Ventas"
