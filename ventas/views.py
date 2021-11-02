@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
-from .models import Venta
+from .models import Venta, DetalleVenta
 from .forms import DetalleVentaForm
 from mercaderias.models import Unidad, Mercaderia
 
@@ -72,7 +72,7 @@ def ajaxgrabarventa(request):
     arrayunidad = request.POST.getlist('arrayunidad[]')
     arraycantidad = request.POST.getlist('arraycantidad[]')
 
-    print(arraycantidad)
+    print(arraymaterial)
     print(arrayunidad)
     print(arraycantidad)
 
@@ -84,12 +84,12 @@ def ajaxgrabarventa(request):
     orden = Venta.objects.latest("pk")
 
     for (material, unidad, cantidad) in zip(arraymaterial, arrayunidad, arraycantidad):
-        material = Mercaderia.objects.get(pk=int(material))
+        mercaderia = Mercaderia.objects.get(pk=int(material))
         unidad = Unidad.objects.get(pk=int(unidad))
 
-        detalleorden = DetalleOrden(
-            orden=orden,
-            material=material,
+        detalleventa = DetalleVenta(
+            venta=venta,
+            mercaderia=mercaderia,
             cantidad=cantidad,
             unidad=unidad
         )
