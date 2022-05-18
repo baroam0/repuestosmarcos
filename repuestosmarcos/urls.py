@@ -18,7 +18,8 @@ from django.urls import path
 
 from .views import home
 from mercaderias.views import listadomercaderias, nuevamercaderia, editarmercaderia
-from ventas.views import listadoventas, nuevaventa
+from ventas.views import listadoventas, nuevaventa, editarventa, verdetalleventa, ajaxgrabarventa
+from stocks.views import stockminimos
 
 urlpatterns = [
     path('', home),
@@ -28,4 +29,8 @@ urlpatterns = [
     path('editarmercaderia/<int:pk>', editarmercaderia),
     path('listadoventas/', listadoventas),
     path('nuevaventa/', nuevaventa),
+    path('ajaxgrabarventa/', ajaxgrabarventa),
+    path('editarventa/<int:pk>', editarventa),
+    path('verdetalleventa/<int:pk>', verdetalleventa),
+    path('listadominimos/', stockminimos),
 ]

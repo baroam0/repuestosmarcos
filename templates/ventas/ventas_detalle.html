@@ -50,25 +50,10 @@
         <div class="pure-u-1-24"></div>
         <div class="pure-u-22-24">
             <h3 align="center">
-                Detalle Orden
+                Detalle de Venta
             </h3>
 
             <form class="pure-form">
-                <fieldset class="pure-group">
-                    <input type="text" id="txtFecha" class="pure-input-1" placeholder="Fecha" />
-                    
-                </fieldset>
-
-
-                <fieldset class="pure-group">
-
-                    {{form.mercaderia}}
-                    {{form.unidad}}
-                    {{form.cantidad}}
-
-                    <button type="button" class="pure-button" onclick="AgregarFilaTabla()" >Agregar</button>                    
-
-                </fieldset>
 
                 <br>
                 <br>
@@ -77,13 +62,21 @@
                     <table class="pure-table pure-table-horizontal" id="tblMateriales">
                         <thead>
                             <tr>
-                                <th>Material</th>
+                                <th>Fecha</th>
+                                <th>Mercaderia</th>
                                 <th>Unidad</th>
                                 <th>Cantidad</th>
-                                <th>Quitar</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for resultado in resultados %}
+                                <tr>
+                                    <td>{{resultado.venta.fecha }}</td>
+                                    <td>{{resultado.mercaderia }}</td>
+                                    <td>{{resultado.unidad }}</td>
+                                    <td>{{resultado.cantidad }}</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </fieldset>

@@ -8,7 +8,7 @@ from mercaderias.models import Unidad, Mercaderia
 
 class DetalleVentaForm(forms.ModelForm):
     mercaderia = forms.ModelChoiceField(
-        queryset=Mercaderia.objects.all(),
+        queryset=Mercaderia.objects.all().order_by("descripcion"),
         required=True,
         widget=forms.Select({'class':'pure-input-1'})
     )
