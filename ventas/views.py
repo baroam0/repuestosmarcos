@@ -26,7 +26,9 @@ def revertirfecha(fecha):
 
 def controlarcantidad(mercaderia, cantidad):
     consulta = Mercaderia.objects.get(pk=mercaderia)
-    operacion = consulta.cantidad - float(cantidad)
+    cantidadmercaderia = consulta.cantidad
+    operacion = float(cantidadmercaderia) - float(cantidad)
+    print(operacion)
     if operacion <= 0:
         return 1
     else:
@@ -132,6 +134,6 @@ def ajaxgrabarventa(request):
                 "status": 200
             }
 
-            return JsonResponse(data)
+    return JsonResponse(data)
 
 # Create your views here.

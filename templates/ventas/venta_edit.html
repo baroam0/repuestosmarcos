@@ -216,7 +216,11 @@
                             alert("Se ha grabado la orden");
                             window.location.replace("/listadoventas")
                         }else{
-                            alert("Ha ocurrido un error");
+                            if(response.status==400){
+                                alert("SIN STOCK");
+                            }else{
+                                alert("Ha ocurrido un error");
+                            }
                         }
                     }
                 });
