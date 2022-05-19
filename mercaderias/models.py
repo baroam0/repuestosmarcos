@@ -20,7 +20,7 @@ class Mercaderia(models.Model):
     """Clase para las Mercaderias """
     descripcion = models.CharField(
         max_length=255,blank=False, null=False, unique=True)
-    unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
+    # unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
     cantidad = models.DecimalField(
         max_digits=10, decimal_places=2,null=False, blank=False)
     minimo = models.DecimalField(

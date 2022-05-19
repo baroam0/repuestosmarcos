@@ -78,7 +78,6 @@
                         <thead>
                             <tr>
                                 <th>Material</th>
-                                <th>Unidad</th>
                                 <th>Cantidad</th>
                                 <th>Quitar</th>
                             </tr>
@@ -114,13 +113,14 @@
                 var modal = document.getElementById("myModal");
                 var span = document.getElementsByClassName("close")[0];
 
+                /*
                 btn.onclick = function() {
                     modal.style.display = "block";
                 }
 
                 span.onclick = function() {
                     modal.style.display = "none";
-                }
+                }*/
 
 
             });
@@ -155,7 +155,7 @@
 
                 contenido = "<tr id='" + material +  "'>";
                 contenido = contenido + "<td>"+ nombreMaterial +"</td>";
-                contenido = contenido + "<td id='" + idunidad + "'>" + unidad + "</td>";
+                //contenido = contenido + "<td id='" + idunidad + "'>" + unidad + "</td>";
                 contenido = contenido + "<td>" + cantidad + "</td>";
                 contenido = contenido + "<td><button type='button' onclick='QuitarFila(" + material + ")'>Quitar</button></td>"
                 contenido = contenido + "</tr>";
@@ -185,20 +185,19 @@
                         var cell = row.cells[y];
 
                         if(y==1){
-                            
-                            console.log("qqqqqq");
-                            console.log(cantidad);
+                            console.log(cell.innerHTML);
                             var idmaterial = row.id;
-                            var idunidad=cell.id;
+                            //var idunidad=cell.id;
                             //arraycantidad.push(cantidad);
                             arraymaterial.push(idmaterial);
-                            arrayunidad.push(idunidad);
+                            cantidad = cell.innerHTML;//arrayunidad.push(idunidad);
+                            arraycantidad.push(cantidad);
                         }
-                        
+                        /*
                         if(y==2){
                             var cantidad=cell.innerHTML;
                             arraycantidad.push(cantidad);
-                        }                        
+                        }*/                       
                     }
 
                 }

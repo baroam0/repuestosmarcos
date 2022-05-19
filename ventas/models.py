@@ -15,7 +15,7 @@ class Venta(models.Model):
 class DetalleVenta(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE)
     mercaderia = models.ForeignKey(Mercaderia, on_delete=models.CASCADE)
-    unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
+    # unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
     cantidad = models.DecimalField(decimal_places=2, max_digits=10, blank=False, null=False)
 
     def __str__(self):

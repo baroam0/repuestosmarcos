@@ -25,9 +25,9 @@
             <form class="pure-form" method="POST">{% csrf_token %}
 
                 <fieldset class="pure-group">
-                    {{form.descripcion}}
-                    {{form.unidad}}
-                    {{form.cantidad}}
+                    {{form.as_p}}
+                  
+                    
                 </fieldset>
                                 
                 <fieldset class="pure-group">

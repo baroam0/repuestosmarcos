@@ -24,6 +24,15 @@ def revertirfecha(fecha):
     return fecha_obj
 
 
+def controlarcantidad(mercaderia, cantidad):
+    consulta = Mercaderia.objects.get(pk=mercaderia)
+    operacion = consulta.cantidad - float(cantidad)
+    if operacion <= 0:
+        return 1
+    else:
+        return 0
+
+
 def listadoventas(request):
     resultados = None
     if "txtBuscar" in request.GET:
@@ -87,7 +96,7 @@ def ajaxgrabarventa(request):
     fecha = revertirfecha(fecha)
 
     arraymaterial = request.POST.getlist('arraymaterial[]')
-    arrayunidad = request.POST.getlist('arrayunidad[]')
+    # arrayunidad = request.POST.getlist('arrayunidad[]')
     arraycantidad = request.POST.getlist('arraycantidad[]')
 
     venta=Venta(
@@ -97,24 +106,32 @@ def ajaxgrabarventa(request):
     venta.save()
     orden = Venta.objects.latest("pk")
     
-    for (material, unidad, cantidad) in zip(arraymaterial, arrayunidad, arraycantidad):
+    for (material, cantidad) in zip(arraymaterial, arraycantidad):
         mercaderia = Mercaderia.objects.get(pk=int(material))
-        unidad = Unidad.objects.get(pk=int(unidad))
+        # unidad = Unidad.objects.get(pk=int(unidad))
         
-        detalleventa = DetalleVenta(
-            venta=venta,
-            mercaderia=mercaderia,
-            cantidad=cantidad,
-            unidad=unidad
-        )
+        operacion = controlarcantidad(mercaderia.pk, cantidad)
 
-        # agregamaterial(material.pk, cantidad)
-        descuentastock(mercaderia.id, cantidad)
-        detalleventa.save()
+        if operacion == 1:
+            data = {
+                "status": 400
+            }
+            return JsonResponse(data)
+        else:
+            detalleventa = DetalleVenta(
+                venta=venta,
+                mercaderia=mercaderia,
+                cantidad=cantidad,
+            )
 
-    data = {
-        "status": 200
-    }
+            # agregamaterial(material.pk, cantidad)
+            descuentastock(mercaderia.id, cantidad)
+            detalleventa.save()
 
-    return JsonResponse(data)
+            data = {
+                "status": 200
+            }
+
+            return JsonResponse(data)
+
 # Create your views here.

@@ -64,7 +64,6 @@
                             <tr>
                                 <th>Fecha</th>
                                 <th>Mercaderia</th>
-                                <th>Unidad</th>
                                 <th>Cantidad</th>
                             </tr>
                         </thead>
@@ -73,7 +72,6 @@
                                 <tr>
                                     <td>{{resultado.venta.fecha }}</td>
                                     <td>{{resultado.mercaderia }}</td>
-                                    <td>{{resultado.unidad }}</td>
                                     <td>{{resultado.cantidad }}</td>
                                 </tr>
                             {% endfor %}
@@ -87,7 +85,7 @@
                 <fieldset class="pure-group">
                     <button type="button" class="pure-button pure-button-primary" onclick="GrabarOrden()">Aceptar</button>
                     &nbsp; &nbsp; &nbsp;
-                    <button type="button" class="pure-button" onclick="IrListadoMaterial()">Cancelar</button>
+                    <button type="button" class="pure-button" onclick="IrListadoVentas()">Cancelar</button>
                 </fieldset>
 
 
@@ -107,13 +105,17 @@
                 var modal = document.getElementById("myModal");
                 var span = document.getElementsByClassName("close")[0];
 
+                /*
+
                 btn.onclick = function() {
                     modal.style.display = "block";
                 }
+                
 
                 span.onclick = function() {
                     modal.style.display = "none";
                 }
+                */
 
 
             });

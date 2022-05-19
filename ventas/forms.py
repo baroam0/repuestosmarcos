@@ -12,16 +12,18 @@ class DetalleVentaForm(forms.ModelForm):
         required=True,
         widget=forms.Select({'class':'pure-input-1'})
     )
+    """
     unidad = forms.ModelChoiceField(
         queryset=Unidad.objects.all(),
         required=True,
         widget=forms.Select({'class':'pure-input-1'})
         )
+    """
     cantidad = forms.DecimalField(
         required=True,
         widget=forms.NumberInput({'class':'pure-input-1'}))
 
     class Meta:
         model = DetalleVenta
-        fields = ['mercaderia','unidad','cantidad']
+        fields = ['mercaderia','cantidad']
         

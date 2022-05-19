@@ -51,8 +51,8 @@
                 <thead>
                     <tr>
                         <th>Descripcion</th>
-                        <th>Unidad</th>
                         <th>Cantidad</th>
+                        <th>Minimo</th>
                         <th>Editar</th>
                     </tr>
                 </thead>
@@ -60,8 +60,8 @@
                     {% for resultado in resultados %}
                         <tr>
                             <td>{{resultado.descripcion.upper }}</td>
-                            <td>{{resultado.unidad }}</td>
                             <td>{{resultado.cantidad }}</td>
+                            <td>{{resultado.minimo }}</td>
                             <td>
                                 <a href="/editarmercaderia/{{resultado.pk}} ">Editar</a></p>
                             </td>
