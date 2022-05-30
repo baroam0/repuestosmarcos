@@ -16,6 +16,7 @@ def listadomercaderias(request):
         parametro = request.GET.get("txtBuscar")
         resultados = Mercaderia.objects.filter(descripcion__icontains=parametro).order_by("descripcion")
     else:
+        parametro = None
         resultados = Mercaderia.objects.all()
     
     paginador = Paginator(resultados, 10)
@@ -26,12 +27,13 @@ def listadomercaderias(request):
         page = 1
 
     resultados = paginador.get_page(page)
-    
+
     return render(
         request,
         "mercaderias/listadomercaderias.html",
         {
-            "resultados": resultados
+            "resultados": resultados, 
+            "parametro": parametro
         }
     )
 
