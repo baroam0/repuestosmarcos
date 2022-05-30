@@ -83,9 +83,9 @@
                 <br>
 
                 <fieldset class="pure-group">
-                    <button type="button" class="pure-button pure-button-primary" onclick="GrabarOrden()">Aceptar</button>
+                    <button type="button" class="pure-button pure-button-primary" onclick="Volver()">Volver</button>
                     &nbsp; &nbsp; &nbsp;
-                    <button type="button" class="pure-button" onclick="IrListadoVentas()">Cancelar</button>
+                    <!--button type="button" class="pure-button" onclick="IrListadoVentas()">Cancelar</button-->
                 </fieldset>
 
 
@@ -127,8 +127,8 @@
                 return elt.options[elt.selectedIndex].text;
             }
 
-            function IrListadoMaterial() {
-                window.location.replace("/listadoorden");
+            function Volver() {
+                window.location.replace("/listadoventas");
             }
 
             function AgregarFilaTabla(){

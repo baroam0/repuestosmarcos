@@ -52,7 +52,7 @@
                     <tr>
                         <th>Numero</th>
                         <th>Fecha</th>
-                        <th>Editar</th>
+                        <th>Ver</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,7 +61,8 @@
                             <td>{{resultado.pk }}</td>
                             <td>{{resultado.fecha }}</td>
                             <td>
-                                <a href="/verdetalleventa/{{resultado.pk}} ">Ver</a></p>
+                                <a href="/verdetalleventa/{{resultado.pk}} "> <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a></p>
                             </td>
                         </tr>
                     {% endfor %}
@@ -70,6 +71,90 @@
         </div>
         <div class="pure-u-3-24"></div>
     </div>
+
+
+
+
+
+
+
+
+
+    <div class="pure-g">
+        <div class="pure-u-3-24"></div>
+        <div class="pure-u-18-24">
+            
+            {% if resultados.has_previous %}
+                
+                    {%if parametro%}
+                        <!--a class="page-link" href="?page=1&txtBuscar={{parametro}}">
+                            <button class="pure-button"><<</button>
+                        </a-->
+                        
+                        <a class="page-link" href="?page={{ resultados.previous_page_number }}&txtBuscar={{parametro}}">
+                            <i class="fa fa-arrow-left"></i>
+                        <a/>
+                    {%else%}
+                        <!--a class="page-link" href="?page=1">
+                            <button class="pure-button"><<</button>
+                        </a-->
+                        
+                        <a class="page-link" href="?page={{ resultados.previous_page_number }}">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                    {%endif%}
+                
+                    {% if parametro%}
+                    <!--a class="page-link" href="?page={{ resultados.previous_page_number }}&txtBuscar={{parametro}}">
+                        <button class="pure-button"> < </button>
+                    </a-->
+                    {%else%}
+                    <!--a class="page-link" href="?page={{ resultados.previous_page_number }}">
+                        <button class="pure-button"> < </button>
+                    </a-->
+                    {%endif%}
+                    
+                
+            {% endif %}
+            
+                <a class="page-link">
+                    Pag. {{ resultados.number }} de {{ resultados.paginator.num_pages }}
+
+                </a>
+
+            {% if resultados.has_next %}
+                    {% if parametro %}
+                    <a class="page-link" href="?page={{ resultados.next_page_number }}&txtBuscar={{parametro}}">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                    
+                    <!--a class="page-link" href="?page={{ resultados.paginator.num_pages }}&txtBuscar={{parametro}}">
+                        <button class="pure-button">>></button>
+                    </a-->
+                    {%else%}
+                    <a class="page-link" href="?page={{ resultados.next_page_number }}">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                    
+                    <!--a class="page-link" href="?page={{ resultados.paginator.num_pages }}">
+                        <button class="pure-button"> >> </button>
+                    </a-- >
+                    {%endif%}
+
+                    {%if parametro%}
+                    <!--a class="page-link" href="?page={{ resultados.paginator.num_pages }}&txtBuscar={{parametro}}">
+                        <button class="pure-button"> >> </button>
+                    </a-->
+                    {%else%}
+                    <!--a class="page-link" href="?page={{ resultados.paginator.num_pages }}">
+                        <button class="pure-button"> >> </button>
+                    </a-->
+                    {%endif%}
+            {% endif %}
+        </div>
+
+
+
         
 {% endblock %}
 
