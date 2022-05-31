@@ -19,7 +19,7 @@ def listadomercaderias(request):
         parametro = None
         resultados = Mercaderia.objects.all()
     
-    paginador = Paginator(resultados, 1)
+    paginador = Paginator(resultados, 10)
 
     if "page" in request.GET:
         page = request.GET.get('page')
