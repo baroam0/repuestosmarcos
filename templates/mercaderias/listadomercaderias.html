@@ -82,33 +82,14 @@
             {% if resultados.has_previous %}
                 
                     {%if parametro%}
-                        <!--a class="page-link" href="?page=1&txtBuscar={{parametro}}">
-                            <button class="pure-button"><<</button>
-                        </a-->
-                        
                         <a class="page-link" href="?page={{ resultados.previous_page_number }}&txtBuscar={{parametro}}">
                             <i class="fa fa-arrow-left"></i>
                         <a/>
                     {%else%}
-                        <!--a class="page-link" href="?page=1">
-                            <button class="pure-button"><<</button>
-                        </a-->
-                        
                         <a class="page-link" href="?page={{ resultados.previous_page_number }}">
                             <i class="fa fa-arrow-left"></i>
                         </a>
-                    {%endif%}
-                
-                    {% if parametro%}
-                    <!--a class="page-link" href="?page={{ resultados.previous_page_number }}&txtBuscar={{parametro}}">
-                        <button class="pure-button"> < </button>
-                    </a-->
-                    {%else%}
-                    <!--a class="page-link" href="?page={{ resultados.previous_page_number }}">
-                        <button class="pure-button"> < </button>
-                    </a-->
-                    {%endif%}
-                    
+                    {%endif%}    
                 
             {% endif %}
             
@@ -123,27 +104,10 @@
                         <i class="fa fa-arrow-right"></i>
                     </a>
                     
-                    <!--a class="page-link" href="?page={{ resultados.paginator.num_pages }}&txtBuscar={{parametro}}">
-                        <button class="pure-button">>></button>
-                    </a-->
                     {%else%}
-                    <a class="page-link" href="?page={{ resultados.next_page_number }}">
-                        <i class="fa fa-arrow-right"></i>
-                    </a>
-                    
-                    <!--a class="page-link" href="?page={{ resultados.paginator.num_pages }}">
-                        <button class="pure-button"> >> </button>
-                    </a-- >
-                    {%endif%}
-
-                    {%if parametro%}
-                    <!--a class="page-link" href="?page={{ resultados.paginator.num_pages }}&txtBuscar={{parametro}}">
-                        <button class="pure-button"> >> </button>
-                    </a-->
-                    {%else%}
-                    <!--a class="page-link" href="?page={{ resultados.paginator.num_pages }}">
-                        <button class="pure-button"> >> </button>
-                    </a-->
+                        <a class="page-link" href="?page={{ resultados.next_page_number }}">
+                            <i class="fa fa-arrow-right"></i>
+                        </a>
                     {%endif%}
             {% endif %}
 
