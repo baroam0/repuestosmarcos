@@ -23,6 +23,11 @@ def revertirfecha(fecha):
     fecha_obj = datetime.datetime.strptime(fecha, fecha_formato)
     return fecha_obj
 
+def rrevertirfecha(fecha):
+    fecha_formato = '%Y-%m-%d'
+    fecha_obj = datetime.datetime.strptime(fecha, fecha_formato)
+    return fecha_obj
+
 
 def controlarcantidad(mercaderia, cantidad):
     consulta = Mercaderia.objects.get(pk=mercaderia)
@@ -39,7 +44,16 @@ def listadoventas(request):
     resultados = None
     if "txtBuscar" in request.GET:
         parametro = request.GET.get("txtBuscar")
-        resultados = Venta.objects.filter(fecha__icontains=parametro)
+        
+        if parametro:
+            if "-" in parametro or "/" in parametro:
+                parametro = rrevertirfecha(parametro)
+                
+                resultados = Venta.objects.filter(fecha__icontains=parametro).order_by('-pk')
+            else:
+                resultados = Venta.objects.filter(pk=parametro).order_by('-pk')
+        else:
+            resultados = Venta.objects.all()
 
     return render(
         request,
@@ -107,11 +121,11 @@ def ajaxgrabarventa(request):
 
     venta.save()
     orden = Venta.objects.latest("pk")
-    
+
     for (material, cantidad) in zip(arraymaterial, arraycantidad):
         mercaderia = Mercaderia.objects.get(pk=int(material))
         # unidad = Unidad.objects.get(pk=int(unidad))
-        
+
         operacion = controlarcantidad(mercaderia.pk, cantidad)
 
         if operacion == 1:
