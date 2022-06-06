@@ -1,6 +1,7 @@
 
 import datetime
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -33,7 +34,6 @@ def controlarcantidad(mercaderia, cantidad):
     consulta = Mercaderia.objects.get(pk=mercaderia)
     cantidadmercaderia = consulta.cantidad
     operacion = float(cantidadmercaderia) - float(cantidad)
-    print(operacion)
     if operacion <= 0:
         return 1
     else:
@@ -41,19 +41,29 @@ def controlarcantidad(mercaderia, cantidad):
 
 
 def listadoventas(request):
-    resultados = None
+    #resultados = None
     if "txtBuscar" in request.GET:
         parametro = request.GET.get("txtBuscar")
-        
-        if parametro:
-            if "-" in parametro or "/" in parametro:
-                parametro = rrevertirfecha(parametro)
-                
-                resultados = Venta.objects.filter(fecha__icontains=parametro).order_by('-pk')
-            else:
-                resultados = Venta.objects.filter(pk=parametro).order_by('-pk')
+        if "/" in parametro in parametro:
+            arrayparametro = parametro.split("/")
+            anio = arrayparametro[2]
+            mes = arrayparametro[1]
+            dia = arrayparametro[0]
+            resultados = Venta.objects.filter(
+                fecha__year=anio, fecha__month=mes, fecha__day=dia).order_by("-pk")
         else:
-            resultados = Venta.objects.all()
+            resultados = Venta.objects.all().order_by("-pk")
+    else:
+        resultados = Venta.objects.all().order_by("-pk")
+
+    paginador = Paginator(resultados, 2)
+
+    if "page" in request.GET:
+        page = request.GET.get('page')
+    else:
+        page = 1
+
+    resultados = paginador.get_page(page)
 
     return render(
         request,
@@ -89,9 +99,9 @@ def editarventa(request, pk):
         else:
             return render(request, 'ventas/venta_edit.html', {"form": form})
     else:
-        form = MercaderiaForm(instance=consulta)
+        form = DetalleVentaForm(instance=consulta)
         return render(request,
-            'mercaderias/mercaderia_edit.html',
+            'ventas/venta_edit.html',
             {"form": form}
         )
 
