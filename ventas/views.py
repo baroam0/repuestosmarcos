@@ -24,12 +24,16 @@ def revertirfecha(fecha):
     fecha_obj = datetime.datetime.strptime(fecha, fecha_formato)
     return fecha_obj
 
+def rrevertirfecha(fecha):
+    fecha_formato = '%Y-%m-%d'
+    fecha_obj = datetime.datetime.strptime(fecha, fecha_formato)
+    return fecha_obj
+
 
 def controlarcantidad(mercaderia, cantidad):
     consulta = Mercaderia.objects.get(pk=mercaderia)
     cantidadmercaderia = consulta.cantidad
     operacion = float(cantidadmercaderia) - float(cantidad)
-    print(operacion)
     if operacion <= 0:
         return 1
     else:
@@ -37,12 +41,20 @@ def controlarcantidad(mercaderia, cantidad):
 
 
 def listadoventas(request):
-    resultados = None
+    #resultados = None
     if "txtBuscar" in request.GET:
         parametro = request.GET.get("txtBuscar")
-        resultados = Venta.objects.filter(fecha__icontains=parametro).order_by("-pk")
+        if "/" in parametro in parametro:
+            arrayparametro = parametro.split("/")
+            anio = arrayparametro[2]
+            mes = arrayparametro[1]
+            dia = arrayparametro[0]
+            resultados = Venta.objects.filter(
+                fecha__year=anio, fecha__month=mes, fecha__day=dia).order_by("-pk")
+        else:
+            resultados = Venta.objects.all().order_by("-pk")
     else:
-        resultados = Venta.objects.all()
+        resultados = Venta.objects.all().order_by("-pk")
 
     paginador = Paginator(resultados, 2)
 
@@ -50,7 +62,7 @@ def listadoventas(request):
         page = request.GET.get('page')
     else:
         page = 1
-    
+
     resultados = paginador.get_page(page)
 
     return render(
@@ -119,11 +131,11 @@ def ajaxgrabarventa(request):
 
     venta.save()
     orden = Venta.objects.latest("pk")
-    
+
     for (material, cantidad) in zip(arraymaterial, arraycantidad):
         mercaderia = Mercaderia.objects.get(pk=int(material))
         # unidad = Unidad.objects.get(pk=int(unidad))
-        
+
         operacion = controlarcantidad(mercaderia.pk, cantidad)
 
         if operacion == 1:
