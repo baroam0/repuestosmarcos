@@ -51,6 +51,45 @@
                     {% endfor %}
                 </tbody>
             </table>
+
+            {% if resultados.has_previous %}
+                
+                    {%if parametro%}
+                        <a class="page-link" href="?page={{ resultados.previous_page_number }}&txtBuscar={{parametro}}">
+                            <i class="fa fa-arrow-left"></i>
+                        <a/>
+                    {%else%}
+                        <a class="page-link" href="?page={{ resultados.previous_page_number }}">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                    {%endif%}    
+                
+            {% endif %}
+            
+                <a class="page-link">
+                    Pag. {{ resultados.number }} de {{ resultados.paginator.num_pages }}
+
+                </a>
+
+            {% if resultados.has_next %}
+                    {% if parametro %}
+                    <a class="page-link" href="?page={{ resultados.next_page_number }}&txtBuscar={{parametro}}">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                    
+                    {%else%}
+                        <a class="page-link" href="?page={{ resultados.next_page_number }}">
+                            <i class="fa fa-arrow-right"></i>
+                        </a>
+                    {%endif%}
+            {% endif %}
+
+
+
+
+
+
+
         </div>
         <div class="pure-u-3-24"></div>
     </div>
