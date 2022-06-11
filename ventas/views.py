@@ -112,7 +112,10 @@ def verdetalleventa(request, pk):
     
     return render(request,
         'ventas/ventas_detalle.html',
-        {"resultados": resultados}
+        {
+            "resultados": resultados,
+            "venta": consultaventa
+        }
     )
 
 
@@ -121,12 +124,21 @@ def ajaxgrabarventa(request):
     fecha = request.POST["fecha"]
     fecha = revertirfecha(fecha)
 
+    cliente = request.POST["cliente"]
+
+    if "pagado" in request.POST:
+        pagado = True
+    else:
+        pagado = False
+
     arraymaterial = request.POST.getlist('arraymaterial[]')
     # arrayunidad = request.POST.getlist('arrayunidad[]')
     arraycantidad = request.POST.getlist('arraycantidad[]')
 
     venta=Venta(
         fecha=fecha,
+        cliente=cliente,
+        pagado=pagado
     )
 
     venta.save()

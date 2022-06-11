@@ -63,16 +63,30 @@
                         <thead>
                             <tr>
                                 <th>Fecha</th>
+                                <th>Cliente</th>
                                 <th>Mercaderia</th>
                                 <th>Cantidad</th>
+                                <th>Pagado</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for resultado in resultados %}
                                 <tr>
                                     <td>{{resultado.venta.fecha }}</td>
+                                    <td>{{venta.cliente.upper }}</td>
                                     <td>{{resultado.mercaderia }}</td>
                                     <td>{{resultado.cantidad }}</td>
+                                    {%if venta.pagado == True %}
+                                        <td>
+                                            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                        </td>
+                                    {%else%}
+                                        <td>
+                                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+
+                                        </td>
+                                    {%endif%}
+                                    
                                 </tr>
                             {% endfor %}
                         </tbody>

@@ -2,13 +2,15 @@
 from django.db import models
 from mercaderias.models import Mercaderia, Unidad
 
+
 class Venta(models.Model):
     fecha = models.DateField(null=False, blank=False)
     pagado = models.BooleanField(default=True)
-    
+    cliente = models.CharField(max_length=100, null=True, blank=True)
+
     def __str__(self):
         return str(self.fecha)
-    
+
     class Meta:
         verbose_name_plural = "Ventas"
 

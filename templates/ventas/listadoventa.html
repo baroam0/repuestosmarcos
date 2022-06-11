@@ -53,6 +53,8 @@
                         <th>Numero</th>
                         <th>Fecha</th>
                         <th>Ver</th>
+                        <th>Pagado</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -62,8 +64,20 @@
                             <td>{{resultado.fecha }}</td>
                             <td>
                                 <a href="/verdetalleventa/{{resultado.pk}} "> <i class="fa fa-eye" aria-hidden="true"></i>
-                                </a></p>
+                                </a>
                             </td>
+                            {% if resultado.pagado == True %}
+                                <td>
+                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                </td>
+                            {%else%}
+                                <td>
+                                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                </td>
+                            {%endif%}
+
+                            
+                            
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -71,13 +85,6 @@
         </div>
         <div class="pure-u-3-24"></div>
     </div>
-
-
-
-
-
-
-
 
 
     <div class="pure-g">

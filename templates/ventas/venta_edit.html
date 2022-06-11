@@ -55,7 +55,15 @@
 
             <form class="pure-form">
                 <fieldset >
+                    
                     <input type="text" id="txtFecha" class="pure-input-1" placeholder="Fecha" />
+
+                    <br>
+                    <br>
+
+                    <input type="text" id="txtCliente" class="pure-input-1" placeholder="Cliente" />
+
+                    <br><br>
 
                     <label for="chkpagado">
                         Pagado
@@ -66,10 +74,12 @@
                 <fieldset class="pure-group">
 
                     {{form.mercaderia}}
-                    {{form.unidad}}
+
+                    <br><br>    
+
                     {{form.cantidad}}
 
-                    <button type="button" class="pure-button" onclick="AgregarFilaTabla()" >Agregar</button>                    
+                    <button type="button" class="pure-button" onclick="AgregarFilaTabla()">Agregar</button>                    
 
                 </fieldset>
 
@@ -174,6 +184,9 @@
 
             function GrabarOrden(){
                 var fecha = $("#txtFecha").val();
+                var cliente = $("#txtCliente").val();
+                var pagado = $("#chkpagado:checked").val();
+
                 var arraymaterial = [];
                 var arrayunidad = [];
                 var arraycantidad = [];
@@ -210,6 +223,8 @@
                     url: "/ajaxgrabarventa/",
                     data: {
                         "fecha": fecha,
+                        "cliente": cliente,
+                        "pagado": pagado,
                         "arraymaterial": arraymaterial,
                         "arrayunidad": arrayunidad,
                         "arraycantidad": arraycantidad,
