@@ -7,7 +7,7 @@ from mercaderias.models import Mercaderia
 
 
 def stockminimos(request):
-    resultados = Mercaderia.objects.filter(cantidad__lte=F('minimo'))
+    resultados = Mercaderia.objects.filter(cantidad__lte=F('minimo')).order_by('descripcion')
     paginador = Paginator(resultados, 10)
 
     if "page" in request.GET:
