@@ -21,6 +21,8 @@ class Mercaderia(models.Model):
     descripcion = models.CharField(
         max_length=255,blank=False, null=False, unique=True)
     # unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
+    codigo = models.CharField(
+        max_length=255,blank=True, null=True, unique=True)
     cantidad = models.DecimalField(
         max_digits=10, decimal_places=2,null=False, blank=False)
     minimo = models.DecimalField(
