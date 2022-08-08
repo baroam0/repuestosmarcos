@@ -6,12 +6,11 @@ from mercaderias.models import Mercaderia, Unidad
 
 
 class MercaderiaForm(forms.ModelForm):
-    descripcion = forms.CharField(
-        required=True, widget=forms.TextInput({'class':'pure-input-1', 'placeholder':'Descripcion'}))
-
     codigo = forms.CharField(
         required=True, widget=forms.TextInput({'class':'pure-input-1', 'placeholder':'Codigo'}))
 
+    descripcion = forms.CharField(
+        required=True, widget=forms.TextInput({'class':'pure-input-1', 'placeholder':'Descripcion'}))
 
     cantidad = forms.DecimalField(
         required=True,
@@ -34,4 +33,4 @@ class MercaderiaForm(forms.ModelForm):
 
     class Meta:
         model = Mercaderia
-        fields = ['descripcion', 'codigo', 'cantidad', 'minimo'] 
+        fields = ['codigo', 'descripcion', 'cantidad', 'minimo'] 
