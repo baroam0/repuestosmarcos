@@ -50,6 +50,7 @@
             <table class="pure-table pure-table-striped ">
                 <thead>
                     <tr>
+                        <th>Codigo</th>
                         <th>Descripcion</th>
                         <th>Cantidad</th>
                         <th>Minimo</th>
@@ -59,6 +60,7 @@
                 <tbody>
                     {% for resultado in resultados %}
                         <tr>
+                            <td>{{resultado.codigo.upper }}</td>
                             <td>{{resultado.descripcion.upper }}</td>
                             <td>{{resultado.cantidad }}</td>
                             <td>{{resultado.minimo }}</td>
