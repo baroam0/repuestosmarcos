@@ -1,6 +1,7 @@
 
 
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.contrib import messages
 from django.http import JsonResponse 
 from django.shortcuts import render, redirect
@@ -14,7 +15,10 @@ def listadomercaderias(request):
     resultados = None
     if "txtBuscar" in request.GET:
         parametro = request.GET.get("txtBuscar")
-        resultados = Mercaderia.objects.filter(descripcion__icontains=parametro).order_by("descripcion")
+        resultados = Mercaderia.objects.filter(
+            Q(codigo__icontains=parametro) |
+            Q(descripcion__icontains=parametro)
+        ).order_by("descripcion")
     else:
         parametro = None
         resultados = Mercaderia.objects.all()
