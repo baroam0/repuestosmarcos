@@ -18,8 +18,7 @@ class Unidad(models.Model):
 
 class Mercaderia(models.Model):
     """Clase para las Mercaderias """
-    descripcion = models.CharField(
-        max_length=255,blank=False, null=False, unique=True)
+    descripcion = models.TextField(blank=False, null=False, unique=True)
     # unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
     codigo = models.CharField(
         max_length=255,blank=True, null=True, unique=True)
