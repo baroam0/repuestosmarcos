@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    
+    <style scoped="">
+        .button-success,
+        .button-error,
+        .button-warning,
+        .button-secondary {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-success {
+            background: rgb(28, 184, 65);
+            /* this is a green */
+        }
+
+        .button-error {
+            background: rgb(202, 60, 60);
+            /* this is a maroon */
+        }
+
+        .button-warning {
+            background: rgb(223, 117, 20);
+            /* this is an orange */
+        }
+
+        .button-secondary {
+            background: rgb(66, 184, 221);
+            /* this is a light blue */
+        }
+    </style>
+    
+    <div class="pure-g">
+        <div class="pure-u-1-24"></div>
+        <div class="pure-u-22-24">
+            
+
+            <form class="pure-form" method="POST">{% csrf_token %}
+
+                <fieldset class="pure-group">
+                </fieldset>
+                                
+                <fieldset class="pure-group">
+                    <div class="pure-controls">
+
+                        <h3>
+                            Esta a punto de borrar la mercaderia:
+                            {{mercaderia.codigo.upper}} - {{mercaderia.descripcion.upper}}
+                        </h3>
+
+                        <div class="pure-g">
+                            <div class="pure-u-1-5">
+                                <button type="submit" class="pure-button pure-button-primary button-warning">SI</button>
+                            </div>
+                            <div class="pure-u-2-5"></div>
+                            <div class="pure-u-1-5">
+                                <button class="pure-button " onclick="history.back()">NO</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>                
+            </form>
+        </div>
+        <div class="pure-u-1-24"></div>
+    </div>
+
+    {% block customjs %}
+
+        <script>
+            function IrListadoMercaderia() {
+                window.location.replace("/listadomercaderias");
+            }
+        </script>
+
+    {% endblock %}
+
+{% endblock %}

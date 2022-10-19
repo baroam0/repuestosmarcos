@@ -55,6 +55,7 @@
                         <th>Cantidad</th>
                         <th>Minimo</th>
                         <th>Editar</th>
+                        <th>Borrar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +67,9 @@
                             <td>{{resultado.minimo }}</td>
                             <td>
                                 <a href="/editarmercaderia/{{resultado.pk}} ">Editar</a></p>
+                            </td>
+                            <td>
+                                <a href="/borrarmercaderia/{{resultado.pk}} ">Borrar</a></p>
                             </td>
                         </tr>
                     {% endfor %}

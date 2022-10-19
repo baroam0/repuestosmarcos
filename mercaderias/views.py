@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib import messages
 from django.http import JsonResponse 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Mercaderia, Unidad
@@ -42,7 +42,6 @@ def listadomercaderias(request):
     )
 
 
-
 def nuevamercaderia(request):
     if request.POST:
         form = MercaderiaForm(request.POST)
@@ -74,42 +73,15 @@ def editarmercaderia(request, pk):
             {"form": form}
         )
 
-"""
-def ajaxmaterial(request):
-    parametro = request.GET.get('term')
-    material = Material.objects.filter(descripcion__icontains=parametro)
 
-    dict_tmp = dict()
-    list_tmp = list()
+def borrarmercaderia(request, pk):
+    mercaderia = get_object_or_404(Mercaderia, pk=pk)  # Get your current cat
 
-    if len(material) > 0:
-        for i in material:
-            dict_tmp["id"] = i.pk
-            dict_tmp["text"] = i.descripcion.upper()
-            list_tmp.append(dict_tmp)
-            dict_tmp = dict()
+    if request.method == 'POST':         # If method is POST,
+        mercaderia.delete()                     # delete the cat.
+        return redirect('/listadomercaderias')             # Finally, redirect to the homepage.
 
-    return JsonResponse(list_tmp, safe=False)
+    return render(request, 'mercaderias/mercaderia_erase.html', {'mercaderia': mercaderia})
+    
 
-
-@csrf_exempt
-def ajaxgrabamaterial(request):
-    material = request.POST["material"]
-
-    try:
-        grabamaterial = Material(descripcion=material)
-        grabamaterial.save()
-        respuesta={
-            "status": 200,
-            "descripcion": "Se ha grabado el material"
-        }
-    except:
-        respuesta={
-            "status": 500,
-            "descripcion": "No se puede guardar el material"
-        }
-
-    return JsonResponse(respuesta, safe=False)
-
-"""
 # Create your views here.
