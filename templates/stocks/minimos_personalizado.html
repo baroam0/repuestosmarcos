@@ -7,9 +7,8 @@
         <div class="pure-u-1-5"></div>
         <div class="pure-u-3-5">
             <h3>
-                Listado de Stock Mínimo de Mercaderias
+                Busqueda de Stock Minimo
             </h3>
-
 
             {% if messages %}
                 {% for message in messages %}
@@ -20,6 +19,19 @@
                     </aside>
                 {% endfor  %}
             {% endif %}
+
+
+            <form class="pure-form">
+                <fieldset>
+                    <input type="text" id="txtBuscar" name="txtBuscar" placeholder="Buscar Item" />
+                    <button type="submit" class="pure-button pure-button-primary">Buscar</button>
+
+                    &nbsp;&nbsp;&nbsp;
+
+                    &nbsp;&nbsp;&nbsp;
+
+                </fieldset>
+            </form>  
 
         </div>
         <div class="pure-u-1-5"></div>
