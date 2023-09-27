@@ -37,6 +37,7 @@ def stockminimospersonalizado(request):
             Q(descripcion__icontains=parametro)
         ).filter(cantidad__lte=F('minimo')).order_by("descripcion")
     else:
+        parametro = ""
         resultados = Mercaderia.objects.none()
 
     paginador = Paginator(resultados, 10)
@@ -52,7 +53,8 @@ def stockminimospersonalizado(request):
         request,
         "stocks/minimos_personalizado.html",
         {
-            "resultados": resultados
+            "resultados": resultados,
+            "parametro": parametro
         }
     )
 
