@@ -17,10 +17,21 @@ class MercaderiaForm(forms.ModelForm):
         widget=forms.NumberInput(
             {
                 'class':'pure-input-1',
-                'placeholder':'Cantidad'
+                'placeholder':'Stock'
             }
         )
     )
+
+    pieza = forms.DecimalField(
+        required=False,
+        widget=forms.NumberInput(
+            {
+                'class':'pure-input-1',
+                'placeholder':'Pieza'
+            }
+        )
+    )
+
     minimo = forms.DecimalField(
         required=True,
         widget=forms.NumberInput(
@@ -33,4 +44,4 @@ class MercaderiaForm(forms.ModelForm):
 
     class Meta:
         model = Mercaderia
-        fields = ['codigo', 'descripcion', 'cantidad', 'minimo'] 
+        fields = ['codigo', 'descripcion', 'cantidad', 'pieza', 'minimo'] 

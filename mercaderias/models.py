@@ -24,6 +24,8 @@ class Mercaderia(models.Model):
         max_length=255,blank=True, null=True, unique=True)
     cantidad = models.DecimalField(
         max_digits=10, decimal_places=2,null=False, blank=False)
+    pieza = models.DecimalField(
+        max_digits=10, decimal_places=2,null=True, blank=True)
     minimo = models.DecimalField(
         max_digits=10, decimal_places=2,null=False, blank=False,
         default=0)

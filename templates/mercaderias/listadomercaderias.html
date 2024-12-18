@@ -52,6 +52,7 @@
                     <tr>
                         <th>Codigo</th>
                         <th>Descripcion</th>
+                        <th>Stock</th>
                         <th>Cantidad</th>
                         <th>Minimo</th>
                         <th>Editar</th>
@@ -64,6 +65,12 @@
                             <td>{{resultado.codigo.upper }}</td>
                             <td>{{resultado.descripcion.upper }}</td>
                             <td>{{resultado.cantidad }}</td>
+                            {% if resultado.pieza%}
+                                <td>{{resultado.pieza }}</td>
+                            {% else %}
+                                <td>0</td>
+                            {% endif %}
+                            
                             <td>{{resultado.minimo }}</td>
                             <td>
                                 <a href="/editarmercaderia/{{resultado.pk}} ">Editar</a></p>
