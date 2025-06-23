@@ -54,7 +54,7 @@
                         <th>Fecha</th>
                         <th>Ver</th>
                         <th>Pagado</th>
-
+                        <th>Borrar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,6 +75,10 @@
                                     <i class="fa fa-times-circle" aria-hidden="true"></i>
                                 </td>
                             {%endif%}
+                            <td>
+                                <a href="/borrarventa/{{resultado.pk}} "> <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </td>
 
                             
                         </tr>

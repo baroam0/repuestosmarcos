@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import home
-from mercaderias.views import listadomercaderias, nuevamercaderia, editarmercaderia, borrarmercaderia
-from ventas.views import listadoventas, nuevaventa, editarventa, verdetalleventa, ajaxgrabarventa
+from mercaderias.views import (listadomercaderias, nuevamercaderia, 
+                               editarmercaderia, borrarmercaderia)
+from ventas.views import (listadoventas, nuevaventa, editarventa, 
+                          verdetalleventa, ajaxgrabarventa, borrarventa)
 from stocks.views import stockminimos, stockminimospersonalizado
 
 urlpatterns = [
@@ -30,6 +32,7 @@ urlpatterns = [
     path('borrarmercaderia/<int:pk>', borrarmercaderia),
     path('listadoventas/', listadoventas),
     path('nuevaventa/', nuevaventa),
+    path('borrarventa/<int:pk>', borrarventa),
     path('ajaxgrabarventa/', ajaxgrabarventa),
     path('editarventa/<int:pk>', editarventa),
     path('verdetalleventa/<int:pk>', verdetalleventa),

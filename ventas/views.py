@@ -2,7 +2,7 @@
 import datetime
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
@@ -109,6 +109,9 @@ def editarventa(request, pk):
 def verdetalleventa(request, pk):
     consultaventa = Venta.objects.get(pk=pk)
     resultados = DetalleVenta.objects.filter(venta=consultaventa)
+
+    for i in resultados:
+        print(i)
     
     return render(request,
         'ventas/ventas_detalle.html',
@@ -150,7 +153,7 @@ def ajaxgrabarventa(request):
 
         operacion = controlarcantidad(mercaderia.pk, cantidad)
 
-        if operacion == 1:
+        if operacion == -10:
             data = {
                 "status": 400
             }
@@ -171,5 +174,15 @@ def ajaxgrabarventa(request):
             }
 
     return JsonResponse(data)
+
+
+def borrarventa(request, pk):
+    venta = get_object_or_404(Venta, pk=pk)
+
+    if request.method == 'POST':
+        venta.delete()
+        return redirect('/listadoventas')
+    
+    return render(request, 'ventas/venta_erase.html', {'venta': venta})
 
 # Create your views here.

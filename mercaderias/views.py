@@ -75,11 +75,11 @@ def editarmercaderia(request, pk):
 
 
 def borrarmercaderia(request, pk):
-    mercaderia = get_object_or_404(Mercaderia, pk=pk)  # Get your current cat
+    mercaderia = get_object_or_404(Mercaderia, pk=pk)
 
-    if request.method == 'POST':         # If method is POST,
-        mercaderia.delete()                     # delete the cat.
-        return redirect('/listadomercaderias')             # Finally, redirect to the homepage.
+    if request.method == 'POST':
+        mercaderia.delete()
+        return redirect('/listadomercaderias')
 
     return render(request, 'mercaderias/mercaderia_erase.html', {'mercaderia': mercaderia})
     
