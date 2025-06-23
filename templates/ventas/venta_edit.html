@@ -237,7 +237,9 @@
                             window.location.replace("/listadoventas")
                         }else{
                             if(response.status==400){
-                                alert("SIN STOCK");
+                                //alert("SIN STOCK");
+                                alert("Se ha grabado la orden");
+                                window.location.replace("/listadoventas")
                             }else{
                                 alert("Ha ocurrido un error");
                             }
