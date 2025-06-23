@@ -21,7 +21,7 @@ from mercaderias.views import (listadomercaderias, nuevamercaderia,
                                editarmercaderia, borrarmercaderia)
 from ventas.views import (listadoventas, nuevaventa, editarventa, 
                           verdetalleventa, ajaxgrabarventa, borrarventa)
-from stocks.views import stockminimos, stockminimospersonalizado
+from stocks.views import stockminimos, stockminimospersonalizado, listadoventasmercaderias
 
 urlpatterns = [
     path('', home),
@@ -38,4 +38,5 @@ urlpatterns = [
     path('verdetalleventa/<int:pk>', verdetalleventa),
     path('listadominimos/', stockminimos),
     path('listadopersonalizado/', stockminimospersonalizado),
+    path('listadoventasmercaderias/', listadoventasmercaderias),
 ]
