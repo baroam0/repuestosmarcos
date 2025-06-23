@@ -67,7 +67,7 @@ def listadoventasmercaderias(request):
         mercaderias = Mercaderia.objects.filter(
             descripcion__icontains=parametro
         ).order_by("descripcion")
-        resultados = DetalleVenta.objects.filter(mercaderia__in=mercaderias)
+        resultados = DetalleVenta.objects.filter(mercaderia__in=mercaderias).order_by('-pk')
     else:
         parametro = None
         resultados = DetalleVenta.objects.none()
