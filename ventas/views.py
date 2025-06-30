@@ -56,7 +56,7 @@ def listadoventas(request):
     else:
         resultados = Venta.objects.all().order_by("-pk")
 
-    paginador = Paginator(resultados, 2)
+    paginador = Paginator(resultados, 10)
 
     if "page" in request.GET:
         page = request.GET.get('page')
